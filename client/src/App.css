@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root{
+    --secondary: #e5e7eb;
+} */
+html,body{
+    /* height: 100%;
+    border: 1px solid red; */
+}
+#root{
+    @apply font-sans text-gray-800;
+}
+.navbar{
+        @apply fixed w-full text-gray-200 bg-primary flex justify-center p-4 px-10 font-semibold text-lg capitalize;
+    /* background-color: var(--secondary) */
+}
+.navbar .list {
+    @apply flex text-sm items-center;
+}
+.navbar .list div{
+    @apply pr-5
+}
+
+
+/* editior opitons */
+.options button{
+    @apply bg-slate-200 p-0.5 w-7 mx-1 rounded-md
+}
+
+.outl *{
+    outline: 1px solid red;
+}
