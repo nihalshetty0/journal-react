@@ -10,7 +10,7 @@ const Navbar = () => {
   const authContext = useContext(AuthContext);
   const journalContext = useContext(JournalContext);
 
-  const { isAuthenticated, logout } = authContext;
+  const { isAuthenticated, logout, loading } = authContext;
   const { clearJournals } = journalContext;
   const onLogout = () => {
     logout();
@@ -45,7 +45,9 @@ const Navbar = () => {
     <div className='navbar z-20'>
       <div className='container flex justify-between items-center max-w-5xl'>
         <div className='text-2xl'>journal</div>
-        <div className='list'>{isAuthenticated ? authLinks : guestLinks}</div>
+        {!loading && (
+          <div className='list'>{isAuthenticated ? authLinks : guestLinks}</div>
+        )}
       </div>
       <div className='absolute top-20'>
         <Alert />

@@ -20,13 +20,22 @@ const Signup = (props) => {
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
 
-  const { register, error, clearErrors, isAuthenticated } = authContext;
+  const {
+    register,
+    error,
+    clearErrors,
+    isAuthenticated,
+    loadUser,
+    setLoadingFalse,
+  } = authContext;
   const { setAlert } = alertContext;
 
   useEffect(() => {
-    // if (isAuthenticated) {
-    //   props.history.push("/");
-    // }
+    if (localStorage.token) {
+      loadUser();
+    } else {
+      setLoadingFalse();
+    }
     if (error === "User already exists") {
       setAlert(error, "danger");
       clearErrors();
@@ -49,7 +58,7 @@ const Signup = (props) => {
         password,
       });
   };
-  if (isAuthenticated) return <Navigate to='/' />;
+  if (localStorage.token) return <Navigate to='/' />;
   return (
     <>
       <Navbar />

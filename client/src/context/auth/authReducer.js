@@ -8,6 +8,7 @@ import {
   LOGOUT,
   CLEAR_ERRORS,
   SET_LOADING,
+  SET_LOADING_FALSE,
 } from "../types";
 
 const reducer = (state, action) => {
@@ -50,6 +51,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case SET_LOADING_FALSE:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

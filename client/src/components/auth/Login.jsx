@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import Navbar from "../layout/Navbar";
 import Body from "../layout/Body";
@@ -12,20 +12,25 @@ const Login = (props) => {
   const authContext = useContext(AuthContext);
   const alertContext = useContext(AlertContext);
 
-  const { login, error, clearErrors, isAuthenticated, loadUser, loading } =
-    authContext;
+  const {
+    login,
+    error,
+    clearErrors,
+    isAuthenticated,
+    loadUser,
+    loading,
+    setLoadingFalse,
+  } = authContext;
   const { setAlert } = alertContext;
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.token) {
       loadUser();
+    } else {
+      setLoadingFalse();
     }
-    if (isAuthenticated) {
-      navigate("/");
-    }
-
     if (error === "Invalid credentials") {
       setAlert(error, "danger");
       clearErrors();
@@ -63,7 +68,8 @@ const Login = (props) => {
     });
   };
 
-  // if (isAuthenticated) return <Navigate to='/' />;
+  if (localStorage.token) return <Navigate to='/' />;
+
   return (
     <>
       <Navbar />
@@ -105,7 +111,7 @@ const Login = (props) => {
                 >
                   <span className='relative'>
                     Log in
-                    {/* {loading && <Spinner mode={"btn"} />} */}
+                    {loading && <Spinner mode={"btn"} />}
                   </span>
                 </button>
                 <button
