@@ -105,7 +105,7 @@ const Login = (props) => {
                 >
                   <span className='relative'>
                     Log in
-                    {loading && <Spinner mode={"btn"} />}
+                    {/* {loading && <Spinner mode={"btn"} />} */}
                   </span>
                 </button>
                 <button
